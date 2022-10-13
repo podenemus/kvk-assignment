@@ -5,8 +5,8 @@ interface Props {
 }
 
 function CompanyList({ companies }: Props) {
-  if(!companies) {
-    return null;
+  if (!companies) {
+    return null
   }
 
   return (
