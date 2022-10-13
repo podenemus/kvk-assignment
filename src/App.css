@@ -1,0 +1,107 @@
+/* inter-regular - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+  src: local(''), url('./fonts/inter-v12-latin-regular.woff2') format('woff2'),
+    url('./fonts/inter-v12-latin-regular.woff') format('woff');
+}
+/* inter-700 - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: fallback;
+  src: local(''), url('./fonts/inter-v12-latin-700.woff2') format('woff2'),
+    url('./fonts/inter-v12-latin-700.woff') format('woff');
+}
+
+:root {
+  --primary: #181e28;
+  --secondary: #44195e;
+  --background: #ffffff;
+  --background-faded: #f1f0f5;
+  --background-gradient: linear-gradient(
+    130deg,
+    rgba(40, 14, 73, 1) 0%,
+    rgba(68, 25, 94, 1) 57%,
+    rgba(57, 25, 94, 1) 100%
+  );
+  --shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  --spacing-small: 10px;
+  --spacing: 15px;
+  --spacing-big: 30px;
+  --radius-big: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--background-faded);
+  color: var(--primary);
+}
+
+.header {
+  width: 100%;
+  padding: var(--spacing-small) var(--spacing);
+  background: var(--background);
+  box-shadow: var(--shadow);
+  display: flex;
+}
+
+.header svg {
+  margin: 0 auto;
+  width: 150px;
+  height: 35px;
+}
+
+.wrapper {
+}
+
+.inner-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-top {
+  background: var(--background-gradient);
+  padding: var(--spacing-big) var(--spacing) 120px;
+  display: flex;
+}
+
+.search-results {
+  padding: var(--spacing);
+  margin: -100px var(--spacing) var(--spacing-big);
+  background: var(--background);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius-big);
+  min-height: 400px;
+}
+
+.company-list {
+  overflow-y: auto;
+  max-height: calc(100vh - 270px);
+}
+
+.company-item {
+
+}
+
+@media screen and (min-width: 768px) {
+  .search-top {
+    padding-bottom: 180px;
+  }
+
+  .search-results {
+    margin: -120px var(--spacing-big) var(--spacing-big);
+  }
+
+  .company-list {
+    max-height: calc(100vh - 300px);
+  }
+}
