@@ -34,8 +34,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json} --no-error-on-unmatched-pattern",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}' --no-error-on-unmatched-pattern",
-    "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc ",
-    "prepare": "cd .. && husky install .husky"
+    "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "precommit": "npm run lint:fix && npm run prettier",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
