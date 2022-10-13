@@ -1,6 +1,6 @@
 {
   "short_name": "KvK Assignment",
-  "name": "Company search & filter",
+  "name": "A simple company search app",
   "icons": [
     {
       "src": "favicon.ico",

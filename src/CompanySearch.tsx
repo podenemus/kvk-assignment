@@ -1,37 +1,51 @@
-import React, { useEffect, useState } from 'react'
-import CompanyList from './CompanyList'
+import React from 'react'
 
-function CompanySearch() {
-  const [companies, setCompanies] = useState<Company[] | null>(null)
+interface Props {
+  searchQuery: string
+  setSearchQuery: (query: string) => void
+  searchCompanies: () => void
+}
 
-  useEffect(() => {
-    fetch('https://617c09aad842cf001711c200.mockapi.io/v1/companies', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result.data)
-        if (result?.data?.length) {
-          setCompanies(result.data)
-        }
-      })
-      .catch((error) => console.error(error))
-  }, [])
+function CompanySearch({
+  searchQuery,
+  setSearchQuery,
+  searchCompanies,
+}: Props) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value)
+  }
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    searchCompanies()
+  }
 
   return (
-    <div className='search-wrapper'>
-      <section className='search-top'>
-        <div className='container'>
-          <input type='search' name='search' />
-        </div>
-      </section>
-      <section className='search-results container'>
-        <CompanyList companies={companies} />
-      </section>
-    </div>
+    <section className='search-top'>
+      <form className='search-form container'>
+        <label htmlFor='search-companies' hidden>
+          Bedrijf zoeken
+        </label>
+        <input
+          type='search'
+          name='search-companies'
+          id='search-companies'
+          className='search-input'
+          placeholder='Bedrijf zoeken'
+          value={searchQuery}
+          onChange={(e) => handleChange(e)}
+          tabIndex={0}
+        />
+        <button
+          name='search-btn'
+          className='search-btn'
+          aria-label='Bedrijf zoeken'
+          onClick={(e) => handleSubmit(e)}
+        >
+          Zoeken
+        </button>
+      </form>
+    </section>
   )
 }
 
