@@ -140,7 +140,7 @@ body {
   display: flex;
 }
 
-.search-form  {
+.search-form {
   position: relative;
 }
 
@@ -148,7 +148,8 @@ body {
   width: 100%;
   appearance: none;
   border: 0;
-  padding: var(--spacing-small) var(--spacing-bigger) var(--spacing-small) var(--spacing-small);
+  padding: var(--spacing-small) var(--spacing-bigger) var(--spacing-small)
+    var(--spacing-small);
   border-radius: var(--radius-small);
   height: 44px;
 }
@@ -159,7 +160,8 @@ body {
   height: 44px;
   padding: var(--spacing);
   padding-left: var(--spacing-big);
-  background: url(./images/search.svg) no-repeat center left var(--spacing) var(--subtle);
+  background: url(./images/search.svg) no-repeat center left var(--spacing)
+    var(--subtle);
   border-radius: 0 var(--radius-small) var(--radius-small) 0;
   background-size: 14px 14px;
   position: absolute;
@@ -232,7 +234,8 @@ body {
   }
 }
 
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+}
 
 @keyframes ripple {
   0% {

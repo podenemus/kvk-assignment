@@ -16,6 +16,6 @@ test('company search', () => {
 
   fireEvent.click(searchButton)
 
-  //assert the expected result
+  // assert the expected result
   expect(document.getElementById('searchResults')).toBeInTheDocument()
 })
