@@ -37,16 +37,15 @@ function CompanyList({
       className='search-results container'
       data-testid='companiesListWrapper'
     >
-      <Toolbar
-        total={total}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        sortOrder={sortOrder}
-        setSortOrder={setSortOrder}
-      />
       <div className='search-results-inner'>
         {!!error && <Error error={error} setError={setError} />}
-        {loading && <Loader />}
+        <Toolbar
+          total={total}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+        />
         {!companies?.length && !loading && (
           <p className='no-results' data-testid='noCompaniesFound'>
             Geen bedrijven gevonden
@@ -63,6 +62,7 @@ function CompanyList({
               />
             ))}
         </div>
+        {loading && <Loader />}
       </div>
     </section>
   )

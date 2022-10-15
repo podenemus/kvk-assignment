@@ -24,7 +24,7 @@ function CompanyItem({ company, index, getCompanyDetails }: Props) {
   }
 
   return (
-    <div className='company-item vcard' tabIndex={index}>
+    <div className='company-item vcard'>
       <div className='details'>
         <div className='logo'>
           <img

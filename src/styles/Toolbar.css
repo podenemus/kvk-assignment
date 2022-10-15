@@ -2,14 +2,14 @@
 
 .toolbar {
   width: 100%;
-  padding: var(--spacing);
+  padding: 0 var(--spacing-medium) var(--spacing-small);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--subtle);
 }
 
 .toolbar .total {
-  color: var(--lightest);
 }
 
 .toolbar .sort {
@@ -18,7 +18,7 @@
 
 .toolbar .sort-select {
   width: 200px;
-  border: 0;
+  border: 1px solid var(--primary);
   padding: var(--spacing-small) var(--spacing-bigger) var(--spacing-small)
     var(--spacing-small);
   border-radius: var(--radius-small);
