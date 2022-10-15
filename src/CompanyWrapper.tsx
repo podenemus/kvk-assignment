@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import CompanyList from './CompanyList'
 import CompanySearch from './CompanySearch'
@@ -6,61 +6,104 @@ import CompanySearch from './CompanySearch'
 const companiesEndpoint =
   'https://617c09aad842cf001711c200.mockapi.io/v1/companies'
 
-function CompanyWrapper() {
-  const [companies, setCompanies] = useState<Company[] | null>(null)
-  const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
-  const [searchQuery, setSearchQuery] = React.useState('')
+export enum SortBy {
+  city = 'city',
+  createdAt = 'createdAt',
+  id = 'id',
+  name = 'name',
+  streetName = 'streetName',
+  zipCode = 'zipCode',
+}
 
-  const fetchCompanies = (id?: string | null, query?: string) => {
+export enum SortOrder {
+  ASC = 'asc',
+  DESC = 'desc',
+}
+
+interface Props {
+  loading: boolean
+  setLoading: (loading: boolean) => void
+  error: string | null
+  setError: (error: string | null) => void
+}
+
+function CompanyWrapper({ loading, setLoading, error, setError }: Props) {
+  const [companies, setCompanies] =
+    useState<CompanyApiResponse['body']['data']>()
+  const [total, setTotal] = useState<CompanyApiResponse['body']['total']>()
+  const [sortBy, setSortBy] = useState<SortBy>(SortBy.createdAt)
+  const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.ASC)
+
+  const [searchQuery, setSearchQuery] = useState<string>('')
+
+  const getCompanies = (params?: string) => {
     setLoading(true)
-    const searchParams = query ? `?search=${query}` : ''
-    const companyId = id ? `/${id}/details` : ''
-    fetch(`${companiesEndpoint}${companyId}${searchParams}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    return fetch(`${companiesEndpoint}${params ?? ''}`)
       .then((res) => res.json())
-      .then((result) => {
-        console.log(result.data)
-        if (result?.data?.length) {
-          setCompanies(result.data)
-          setLoading(false)
-        }
-      })
+      .then((result) => result)
       .catch((error) => {
         console.error(error)
         setError(error)
       })
+      .finally(() => {
+        setLoading(false)
+      })
+  }
+
+  const getAllCompanies = () => {
+    if (!loading) {
+      getCompanies().then((result) => {
+        setCompanies(result?.data)
+        setTotal(result?.total)
+      })
+    }
+  }
+
+  const searchCompanies = (query: string) => {
+    if (!loading) {
+      getCompanies(`?search=${query}`).then((result) => {
+        setCompanies(result?.data)
+        setTotal(result?.total)
+      })
+    }
+  }
+
+  const getCompanyDetails = (id: string) => getCompanies(`/${id}/details`)
+
+  const getSortedCompanies = (sort: SortBy, order: SortOrder) => {
+    getCompanies(`?sortBy=${sort}&order=${order}`).then((result) => {
+      setCompanies(result?.data)
+      setTotal(result?.total)
+    })
   }
 
   useEffect(() => {
-    fetchCompanies()
+    getAllCompanies()
   }, [])
 
-  const searchCompanies = useCallback(() => {
-    fetchCompanies(null, searchQuery)
-  }, [searchQuery])
-
-  const getCompanyDetails = useCallback((id: string) => {
-    fetchCompanies(id)
-  }, [])
+  useEffect(() => {
+    getSortedCompanies(sortBy, sortOrder)
+  }, [sortBy, sortOrder])
 
   return (
     <main className='search-wrapper'>
       <CompanySearch
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
+        loading={loading}
         searchCompanies={searchCompanies}
       />
       <CompanyList
         companies={companies}
         loading={loading}
         error={error}
+        total={total}
         setError={setError}
         getCompanyDetails={getCompanyDetails}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
       />
     </main>
   )

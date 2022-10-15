@@ -1,0 +1,46 @@
+/* Typography */
+
+/* inter-regular - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+  src: local(''), url('../fonts/inter-v12-latin-regular.woff2') format('woff2'),
+    url('../fonts/inter-v12-latin-regular.woff') format('woff');
+}
+
+/* inter-700 - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: fallback;
+  src: local(''), url('../fonts/inter-v12-latin-700.woff2') format('woff2'),
+    url('../fonts/inter-v12-latin-700.woff') format('woff');
+}
+
+body,
+button,
+input,
+select {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
+p {
+  margin: 0 0 var(--spacing-smaller);
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1rem;
+  margin: 0 0 var(--spacing-small);
+}

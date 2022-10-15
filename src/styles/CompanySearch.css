@@ -1,0 +1,47 @@
+/* Company Search styles */
+
+.search-top {
+  background: var(--gradient);
+  padding: var(--spacing-medium) var(--spacing) 120px;
+}
+
+.search-header {
+  max-width: calc(var(--max-width) - (var(--spacing) * 2));
+  color: var(--lightest);
+  text-align: center;
+  padding-bottom: var(--spacing);
+}
+
+.search-form {
+  position: relative;
+  max-width: calc(var(--max-width) - (var(--spacing) * 2));
+}
+
+.search-input {
+  width: 100%;
+  appearance: none;
+  border: 0;
+  padding: var(--spacing-small) var(--spacing-bigger) var(--spacing-small)
+    var(--spacing-small);
+  border-radius: var(--radius-small);
+  height: 48px;
+}
+
+.search-btn {
+  height: 48px;
+  padding: var(--spacing);
+  padding-left: var(--spacing-big);
+  background: url(../images/search.svg) no-repeat center left var(--spacing)
+    var(--subtle);
+  background-size: 15px 15px;
+  border-radius: 0 var(--radius-small) var(--radius-small) 0;
+  position: absolute;
+  right: 0;
+  top: calc(50% - 24px);
+}
+
+@media screen and (min-width: var(--screen-md)) {
+  .search-top {
+    padding: var(--spacing-medium) var(--spacing-medium) 180px;
+  }
+}

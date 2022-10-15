@@ -3,29 +3,57 @@ import Loader from './Loader'
 import CompanyItem from './CompanyItem'
 import Error from './Error'
 
+import './styles/CompanyList.css'
+import Toolbar from './Toolbar'
+import { SortBy, SortOrder } from './CompanyWrapper'
+
 interface Props {
-  companies: Company[] | null
+  companies?: CompanyApiResponse['body']['data']
+  total?: CompanyApiResponse['body']['total']
   loading: boolean
-  error: string | null
+  error?: string | null
   setError: (error: string | null) => void
-  getCompanyDetails: (id: string) => void
+  getCompanyDetails: (id: string) => Promise<CompanyDetailsApiResponse>
+  sortBy: SortBy
+  sortOrder: SortOrder
+  setSortBy: (sort: SortBy) => void
+  setSortOrder: (order: SortOrder) => void
 }
 
 function CompanyList({
   companies,
+  total,
   loading,
   error,
   setError,
   getCompanyDetails,
+  sortBy,
+  setSortBy,
+  sortOrder,
+  setSortOrder,
 }: Props) {
   return (
-    <section className='search-results container' id='searchResults'>
+    <section
+      className='search-results container'
+      data-testid='companiesListWrapper'
+    >
+      <Toolbar
+        total={total}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+      />
       <div className='search-results-inner'>
         {!!error && <Error error={error} setError={setError} />}
         {loading && <Loader />}
-        {!companies?.length && !loading && <p>Geen resultaten gevonden</p>}
+        {!companies?.length && !loading && (
+          <p className='no-results' data-testid='noCompaniesFound'>
+            Geen bedrijven gevonden
+          </p>
+        )}
         <div className='company-list overflow-y-auto'>
-          {companies?.length &&
+          {!!companies?.length &&
             Object.values(companies).map((company: Company, index: number) => (
               <CompanyItem
                 company={company}

@@ -7,7 +7,7 @@ interface Props {
 
 function Error({ error, setError }: Props) {
   return (
-    <div className='error'>
+    <div className='error' data-testid='error'>
       <div className='container'>{error}</div>
       <button
         onClick={() => setError(null)}
