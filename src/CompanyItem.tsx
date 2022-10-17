@@ -39,13 +39,13 @@ function CompanyItem({ company, index, getCompanyDetails }: Props) {
         {extended ? (
           <button
             onClick={() => setExtended(false)}
-            aria-label='Toon minder informatie'
+            title='Toon minder informatie'
             className='toggle-btn show-less'
           ></button>
         ) : (
           <button
             onClick={handleMoreDetailsClick}
-            aria-label='Toon meer informatie'
+            title='Toon meer informatie'
             className='toggle-btn show-more'
           ></button>
         )}

@@ -55,7 +55,7 @@ function CompanySearch({
           type='submit'
           name='search-btn'
           className='search-btn'
-          aria-label='Bedrijf zoeken'
+          title='Bedrijf zoeken'
           data-testid='searchButton'
         >
           Zoeken

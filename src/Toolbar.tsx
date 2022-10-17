@@ -39,7 +39,7 @@ function Toolbar({ total, sortBy, setSortBy, sortOrder, setSortOrder }: Props) {
             )
           }
           className={`sort-btn ${sortOrder === SortOrder.ASC ? 'asc' : 'desc'}`}
-          aria-label={sortOrder === SortOrder.ASC ? 'Aflopend' : 'Oplopend'}
+          title={sortOrder === SortOrder.ASC ? 'Aflopend' : 'Oplopend'}
           data-testid='sortBtn'
         ></button>
       </div>

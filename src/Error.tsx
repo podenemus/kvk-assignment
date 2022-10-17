@@ -12,7 +12,7 @@ function Error({ error, setError }: Props) {
       <button
         onClick={() => setError(null)}
         className='close-btn'
-        aria-label='Sluit foutmelding'
+        title='Sluit foutmelding'
       ></button>
     </div>
   )
